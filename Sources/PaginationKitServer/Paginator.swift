@@ -12,6 +12,11 @@ public struct Paginator<T: Encodable> {
     // MARK: - Variables
     public let data: [T]
     
+    // MARK: - Initializers
+    public init(data: [T]) {
+        self.data = data
+    }
+    
     // MARK: - Utilities
     public func paginate(_ page: Int) -> PaginatedResponse<T>? {
         let pages = data.chunked(into: 15)
