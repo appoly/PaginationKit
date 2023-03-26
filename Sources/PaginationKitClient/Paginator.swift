@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public class Paginator<T: Decodable>: ObservableObject {
+public class Paginator<T: Decodable> {
     
     // MARK: - Variables
     @Binding public var data: [T]
