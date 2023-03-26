@@ -10,7 +10,7 @@ import SwiftUI
 public class Paginator<T: Decodable>: ObservableObject {
     
     // MARK: - Variables
-    @Published public var data: [T] = []
+    @Binding public var data: [T]
     
     public let fetch: (Int) async throws -> Data
     
@@ -21,9 +21,10 @@ public class Paginator<T: Decodable>: ObservableObject {
     
     // MARK: - Initializers
     
-    public init(fetch: @escaping (Int) async throws -> Data, decoder: JSONDecoder = .init()) async throws {
+    public init(fetch: @escaping (Int) async throws -> Data, decoder: JSONDecoder = .init(), data: Binding<[T]>) async throws {
         self.fetch = fetch
         self.decoder = decoder
+        _data = data
         try await next()
     }
     
